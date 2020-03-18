@@ -3,8 +3,8 @@
 	import PairListPresenter from './components/PairListPresenter.svelte';
 	import PairListCrossPresenter from './components/PairListCrossPresenter.svelte';
 
-	let options = ["Go to bed", "Do homework"];
-	let criteria = ["Will it impact my grades negatively?", "Will I feel tired tomorrow?", "Will it impact my relationships?"];
+	let options;
+	let criteria;
 	let scoredCriteria;
 	let scoredOptions;
 
