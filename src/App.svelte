@@ -2,11 +2,12 @@
 	import ListEntry from './components/ListEntry.svelte';
 	import PairListPresenter from './components/PairListPresenter.svelte';
 	import PairListCrossPresenter from './components/PairListCrossPresenter.svelte';
+	import Results from './components/Results.svelte';
 
 	let options;
 	let criteria;
-	let scoredCriteria;
-	let scoredOptions;
+	let scoredCriteria = [];
+	let scoredOptions = [];
 
 	const handleOptionsSubmit = ({ detail }) => {
 		options = detail;
@@ -24,6 +25,7 @@
 		scoredOptions = detail;
 		console.log({ scoredOptions, scoredCriteria });
 	}
+
 </script>
 
 <main>
@@ -48,13 +50,13 @@
 		<p slot="description">Please enter the criteria you wish to use to evaluate your options, such as "cost" or "time required"</p>
 		<p slot="empty" class="text-grey">No criteria yet!</p>
 	</ListEntry>
-{:else if !scoredCriteria}
+{:else if !scoredCriteria.length}
 	<h3>Rank Criteria</h3>
 	<p>Which of these two criteria is more important?</p>
 	<PairListPresenter
 		items={criteria} 
 		on:done={handleCriteriaScores}/>
-{:else if !scoredOptions}
+{:else if !scoredOptions.length}
 	<h3>Rank Options by Criteria</h3>
 	<PairListCrossPresenter 
 		prompts={criteria}
@@ -62,6 +64,7 @@
 		on:done={handleOptionsScores}/>
 {:else}
 	<h3>Results</h3>
+	<Results {scoredCriteria} {scoredOptions}/>
 {/if}
 </main>
 
