@@ -4,12 +4,7 @@
 
 	const dispatch = createEventDispatcher();
 
-  let entries = [
-    {
-      "text": "fasdfaf",
-      "id": 26651531
-    }
-  ];
+  let entries = [];
 
   let entry = "";
 
@@ -32,7 +27,7 @@
 <div>
   <h1>Hello World!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-  {#each entries as { text, id }}
+  {#each entries as { text, id }, i (id)}
     <div key={id} class="row">
       <span class="entry-text">{text}</span><button on:click={() => deleteItem(id)}>Delete</button>
     </div>

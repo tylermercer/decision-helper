@@ -1,14 +1,39 @@
-
 <script>
 	import ListEntry from './components/ListEntry.svelte';
 
-	const handleSubmit = ({ detail }) => {
-		console.log(detail);
+	let options;
+	let criteria;
+	let criteriaAreScored = false;
+	let optionsAreScored = false;
+
+	const handleOptionsSubmit = ({ detail }) => {
+		options = detail;
+	}
+
+	const handleCriteriaSubmit = ({ detail }) => {
+		criteria = detail;
 	}
 </script>
 
 <main>
-	<ListEntry on:submit={handleSubmit}></ListEntry>
+{#if !options}
+	<ListEntry key="options" on:submit={handleOptionsSubmit}></ListEntry>
+{:else if !criteria}
+	<ListEntry key="criteria" on:submit={handleCriteriaSubmit}></ListEntry>
+{:else if !criteriaAreScored}
+	<h1>Criteria:</h1>
+	<ul>
+	{#each criteria as { text, id }, i (id)}
+		<li>{text}</li>	
+	{/each}
+	</ul>
+	<h1>Options:</h1>
+	<ul>
+	{#each options as { text, id }, i (id)}
+		<li>{text}</li>	
+	{/each}
+	</ul>
+{/if}
 </main>
 
 <style>
