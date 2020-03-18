@@ -6,7 +6,7 @@
 	let options = ["Go to bed", "Do homework"];
 	let criteria = ["Will it impact my grades negatively?", "Will I feel tired tomorrow?", "Will it impact my relationships?"];
 	let scoredCriteria;
-	let optionsAreScored = false;
+	let scoredOptions;
 
 	const handleOptionsSubmit = ({ detail }) => {
 		options = detail;
@@ -18,11 +18,11 @@
 
 	const handleCriteriaScores = ({ detail }) => {
 		scoredCriteria = detail;
-		console.log(scoredCriteria);
 	}
 	
 	const handleOptionsScores = ({ detail }) => {
-		optionsAreScored = true;
+		scoredOptions = detail;
+		console.log({ scoredOptions, scoredCriteria });
 	}
 </script>
 
@@ -54,15 +54,12 @@
 		prompt="Which of these two criteria is more important?"
 		items={criteria} 
 		on:done={handleCriteriaScores}/>
-{:else if !optionsAreScored}
-	<h3>WIP</h3>
+{:else if !scoredOptions}
+	<h3>Rank Options by Criteria</h3>
 	<PairListCrossPresenter 
-		prompts={criteria}
+		prompts={criteria.map(c =>`Which of these options best satisfies the following criteria? "${c}"`)}
 		items={options} 
 		on:done={handleOptionsScores}/>
-	<div>
-		<button on:click={handleOptionsScores}>Score options</button>
-	</div>
 {:else}
 	<h3>Results</h3>
 {/if}
