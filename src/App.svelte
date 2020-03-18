@@ -30,7 +30,7 @@
 	<h1>Options:</h1>
 	<ul>
 	{#each options as { text, id }, i (id)}
-		<li>{text}</li>	
+		<li>{text}</li>
 	{/each}
 	</ul>
 {/if}
@@ -39,7 +39,7 @@
 <style>
 	main {
 		padding: 1em;
-		max-width: 240px;
+		max-width: 320px;
 		margin: 0 auto;
 	}
 
