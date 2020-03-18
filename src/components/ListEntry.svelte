@@ -13,7 +13,7 @@
   let entry = "";
 
   const addEntry = () => {
-    console.log("Foobar")
+    if (!entry) return;
     entries =  entries.concat({
       text: entry,
       id: createId()
@@ -52,7 +52,7 @@
       on:keydown="{handleEnter}" 
       bind:value={entry} 
       autofocus/>
-    <button on:click={addEntry}>Add</button>
+    <button on:click={addEntry} disabled={!entry}>Add</button>
   </div>
   <button 
     class="submit-btn" 
