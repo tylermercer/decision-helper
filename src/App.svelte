@@ -31,6 +31,7 @@
 		minLength={2}>
 		<h1 slot="title">Options</h1>
 		<p slot="description">Please enter the options you're deciding between. (Enter at least two.)</p>
+		<p slot="empty"><small>Enter a decision option to get started!</small></p>
 	</ListEntry>
 {:else if !criteria}
 	<ListEntry 
@@ -38,6 +39,7 @@
 		submitButtonText="Next">
 		<h1 slot="title">Criteria</h1>
 		<p slot="description">Please enter the criteria you wish to use to evaluate your options.</p>
+		<p slot="empty"><small>No criteria yet!</small></p>
 	</ListEntry>
 {:else if !criteriaAreScored}
 	<h1>WIP</h1>
