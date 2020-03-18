@@ -20,7 +20,7 @@
   const done = () => {
     let normalizedScores = scoredItems.map(e => ({ 
       ...e, 
-      score: e.score/pairedItems.length
+      score: e.score/(items.length - 1) //Score is the percentage of relevant pairs that this item won
     }));
     dispatch('done', normalizedScores);
     initScoredItems();
