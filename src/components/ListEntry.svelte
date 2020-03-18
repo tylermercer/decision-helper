@@ -4,7 +4,12 @@
 
 	const dispatch = createEventDispatcher();
 
-  let entries = [];
+  let entries = [
+    {
+      "text": "fasdfaf",
+      "id": 26651531
+    }
+  ];
 
   let entry = "";
 
@@ -25,12 +30,14 @@
 </script>
 
 <div>
+  <h1>Hello World!</h1>
+	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
   {#each entries as { text, id }}
-    <div key={id}>
-      <span class="entry">{text}</span><button on:click={() => deleteItem(id)}>Delete</button>
+    <div key={id} class="row">
+      <span class="entry-text">{text}</span><button on:click={() => deleteItem(id)}>Delete</button>
     </div>
   {/each}
-  <div>
+  <div class="row">
     <input placeholder="Option 1" bind:value={entry}/>
     <button on:click={addEntry} >Add</button>
   </div>
@@ -39,10 +46,19 @@
 
 <style>
   input {
-    display: inline;
+    display: inline-block;
+    flex: 1;
+    margin-right: 10px;
   }
-  .entry {
+  .entry-text {
     box-shadow: none;
-    background-color: green;
+    padding-right: 10px;
+    flex: 1;
+    text-align: left;
+  }
+  .row {
+    display: flex;
+    margin: 4px 0;
+    align-items: center;
   }
 </style>
