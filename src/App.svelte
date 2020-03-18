@@ -1,5 +1,7 @@
 <script>
 	import ListEntry from './components/ListEntry.svelte';
+	import PairListPresenter from './components/PairListPresenter.svelte';
+	import PairListListPresenter from './components/PairListListPresenter.svelte';
 
 	let options;
 	let criteria;
@@ -55,11 +57,15 @@
 		<li>{text}</li>
 	{/each}
 	</ul>
-	<div>
-		<button on:click={handleCriteriaScores}>Score criteria</button>
-	</div>
+	<PairListPresenter 
+		items={criteria} 
+		on:done={handleCriteriaScores}/>
 {:else if !optionsAreScored}
 	<h1>WIP</h1>
+	<PairListListPresenter 
+		prompts={criteria}
+		items={options} 
+		on:done={handleCriteriaScores}/>
 	<div>
 		<button on:click={handleOptionsScores}>Score options</button>
 	</div>
