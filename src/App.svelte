@@ -45,7 +45,7 @@
 		on:submit={handleCriteriaSubmit} 
 		submitButtonText="Next">
 		<h3 slot="title">Enter Criteria</h3>
-		<p slot="description">Please enter the criteria you wish to use to evaluate your options.</p>
+		<p slot="description">Please enter the criteria you wish to use to evaluate your options, such as "cost" or "time required"</p>
 		<p slot="empty" class="text-grey">No criteria yet!</p>
 	</ListEntry>
 {:else if !scoredCriteria}
