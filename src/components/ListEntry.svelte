@@ -1,10 +1,13 @@
 <script>
   import createId from '../uid.js';
   import { createEventDispatcher } from 'svelte';
+  import { Field, Button, Input } from 'svelte-chota';
 
   export let submitButtonText = "Submit";
 
   export let minLength = 1;
+
+  export let placeholder = "Your text here...";
 
 	const dispatch = createEventDispatcher();
 
@@ -40,34 +43,34 @@
   {#each entries as { text, id }, i (id)}
     <div key={id} class="row">
       <span class="entry-text">{text}</span>
-      <button on:click={() => deleteItem(id)}>Delete</button>
+      <button class="button outline" on:click={() => deleteItem(id)}>Delete</button>
     </div>
   {:else}
     <slot name="empty"></slot>
   {/each}
-  <div class="row">
+  <Field gapless grouped>
     <!-- svelte-ignore a11y-autofocus -->
-    <input 
-      placeholder="Option 1" 
+    <Input 
+      {placeholder} 
       on:keydown="{handleEnter}" 
       bind:value={entry} 
       autofocus/>
-    <button on:click={addEntry} disabled={!entry}>Add</button>
-  </div>
-  <button
+    <Button 
+      primary 
+      on:click={addEntry} 
+      disabled={!entry}>Add</Button>
+  </Field>
+  <Button
+    class="pull-right"
+    primary
     disabled={entries.length < minLength} 
     on:click={submit}>
     {submitButtonText}
-  </button>
+  </Button>
 </div>
 
 <style>
-  input {
-    display: inline-block;
-    flex: 1;
-  }
   .entry-text {
-    box-shadow: none;
     padding-right: 10px;
     flex: 1;
     text-align: left;
@@ -76,9 +79,5 @@
     display: flex;
     margin: 4px 0;
     align-items: center;
-  }
-  button {
-    float: right;
-    margin-left: 10px;
   }
 </style>
