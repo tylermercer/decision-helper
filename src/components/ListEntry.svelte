@@ -26,6 +26,12 @@
   const deleteItem = id => {
     entries = entries.filter(f => f.id !== id);
   }
+
+  const handleEnter = (e) => {
+    if (e.key !== "Enter") return;
+    addEntry();
+  }
+
 </script>
 
 <div>
@@ -37,13 +43,23 @@
       <button on:click={() => deleteItem(id)}>Delete</button>
     </div>
   {:else}
-    <div></div>
+    <slot name="empty"></slot>
   {/each}
   <div class="row">
-    <input placeholder="Option 1" bind:value={entry}/>
-    <button on:click={addEntry} >Add</button>
+    <!-- svelte-ignore a11y-autofocus -->
+    <input 
+      placeholder="Option 1" 
+      on:keydown="{handleEnter}" 
+      bind:value={entry} 
+      autofocus/>
+    <button on:click={addEntry}>Add</button>
   </div>
-  <button class="submit-btn" disabled={entries.length < minLength} on:click={submit}>{submitButtonText}</button>
+  <button 
+    class="submit-btn" 
+    disabled={entries.length < minLength} 
+    on:click={submit}>
+    {submitButtonText}
+  </button>
 </div>
 
 <style>
