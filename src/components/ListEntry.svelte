@@ -1,5 +1,4 @@
 <script>
-  import createId from '../uid.js';
   import { createEventDispatcher } from 'svelte';
   import { Field, Button, Input } from 'svelte-chota';
 
@@ -17,17 +16,14 @@
 
   const addEntry = () => {
     if (!entry) return;
-    entries =  entries.concat({
-      text: entry,
-      id: createId()
-    });
+    entries =  entries.concat(entry);
     entry = "";
   }
 
   const submit = () => dispatch('submit', entries);
 
-  const deleteItem = id => {
-    entries = entries.filter(f => f.id !== id);
+  const deleteItem = i => {
+    entries = entries.slice(0, i).concat(entries.slice(i + 1));
   }
 
   const handleEnter = (e) => {
@@ -40,10 +36,10 @@
 <div>
   <slot name="title"></slot>
   <slot name="description"></slot>
-  {#each entries as { text, id }, i (id)}
-    <div key={id} class="row">
-      <span class="entry-text">{text}</span>
-      <button class="button outline" on:click={() => deleteItem(id)}>Delete</button>
+  {#each entries as entry, i (i)}
+    <div class="row">
+      <span class="entry-text">{entry}</span>
+      <button class="button outline" on:click={() => deleteItem(i)}>Delete</button>
     </div>
   {:else}
     <slot name="empty"></slot>

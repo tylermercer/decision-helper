@@ -3,9 +3,9 @@
 	import PairListPresenter from './components/PairListPresenter.svelte';
 	import PairListCrossPresenter from './components/PairListCrossPresenter.svelte';
 
-	let options;
-	let criteria;
-	let criteriaAreScored = false;
+	let options = ["Go to bed", "Do homework"];
+	let criteria = ["Will it impact my grades negatively?", "Will I feel tired tomorrow?", "Will it impact my relationships?"];
+	let scoredCriteria;
 	let optionsAreScored = false;
 
 	const handleOptionsSubmit = ({ detail }) => {
@@ -17,7 +17,8 @@
 	}
 
 	const handleCriteriaScores = ({ detail }) => {
-		criteriaAreScored = true;
+		scoredCriteria = detail;
+		console.log(scoredCriteria);
 	}
 	
 	const handleOptionsScores = ({ detail }) => {
@@ -34,7 +35,7 @@
 		on:submit={handleOptionsSubmit} 
 		submitButtonText="Next"
 		minLength={2}>
-		<h3 slot="title">Options</h3>
+		<h3 slot="title">Enter Options</h3>
 		<p slot="description">Please enter the options you're deciding between. (Enter at least two.)</p>
 		<p slot="empty" class="text-grey">Enter a decision option to get started!</p>
 	</ListEntry>
@@ -43,25 +44,14 @@
 		placeholder="Criteria text"
 		on:submit={handleCriteriaSubmit} 
 		submitButtonText="Next">
-		<h2 slot="title">Criteria</h2>
+		<h3 slot="title">Enter Criteria</h3>
 		<p slot="description">Please enter the criteria you wish to use to evaluate your options.</p>
 		<p slot="empty" class="text-grey">No criteria yet!</p>
 	</ListEntry>
-{:else if !criteriaAreScored}
-	<h3>WIP</h3>
-	<h4>Criteria:</h4>
-	<ul>
-	{#each criteria as { text, id }, i (id)}
-		<li>{text}</li>	
-	{/each}
-	</ul>
-	<h4>Options:</h4>
-	<ul>
-	{#each options as { text, id }, i (id)}
-		<li>{text}</li>
-	{/each}
-	</ul>
-	<PairListPresenter 
+{:else if !scoredCriteria}
+	<h3>Rank Criteria</h3>
+	<PairListPresenter
+		prompt="Which of these two criteria is more important?"
 		items={criteria} 
 		on:done={handleCriteriaScores}/>
 {:else if !optionsAreScored}
@@ -69,7 +59,7 @@
 	<PairListCrossPresenter 
 		prompts={criteria}
 		items={options} 
-		on:done={handleCriteriaScores}/>
+		on:done={handleOptionsScores}/>
 	<div>
 		<button on:click={handleOptionsScores}>Score options</button>
 	</div>
@@ -77,6 +67,10 @@
 	<h3>Results</h3>
 {/if}
 </main>
+
+<svelte:head>
+	<title>Volit | Make Hard Decisions Easier</title>
+</svelte:head>
 
 <style>
 	main {
