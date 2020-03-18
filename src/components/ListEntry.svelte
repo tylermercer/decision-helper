@@ -54,8 +54,7 @@
       autofocus/>
     <button on:click={addEntry} disabled={!entry}>Add</button>
   </div>
-  <button 
-    class="submit-btn" 
+  <button
     disabled={entries.length < minLength} 
     on:click={submit}>
     {submitButtonText}
@@ -66,7 +65,6 @@
   input {
     display: inline-block;
     flex: 1;
-    margin-right: 10px;
   }
   .entry-text {
     box-shadow: none;
@@ -79,7 +77,8 @@
     margin: 4px 0;
     align-items: center;
   }
-  .submit-btn {
+  button {
     float: right;
+    margin-left: 10px;
   }
 </style>
