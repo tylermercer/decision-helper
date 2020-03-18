@@ -14,7 +14,7 @@
 {#each pair as { item, index }, i (i)}
   <div class="item">
     <p>{item}</p>
-    <Button on:click={() => onSelect(i)}>Option {i+1}</Button>
+    <Button on:click={() => onSelect(i)}>Select</Button>
   </div>
 {/each}
 </div>
@@ -31,7 +31,8 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    max-width: 50%;
+    width: 50%;
+    min-width: 150px;
     justify-content: space-between;
   }
   .item p {
