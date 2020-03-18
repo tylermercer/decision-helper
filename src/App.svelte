@@ -13,26 +13,56 @@
 	const handleCriteriaSubmit = ({ detail }) => {
 		criteria = detail;
 	}
+
+	const handleCriteriaScores = ({ detail }) => {
+		criteriaAreScored = true;
+	}
+	
+	const handleOptionsScores = ({ detail }) => {
+		optionsAreScored = true;
+	}
 </script>
 
 <main>
 {#if !options}
-	<ListEntry key="options" on:submit={handleOptionsSubmit}></ListEntry>
+	<ListEntry 
+		on:submit={handleOptionsSubmit} 
+		submitButtonText="Next"
+		minLength={2}>
+		<h1 slot="title">Options</h1>
+		<p slot="description">Please enter the options you're deciding between. (Enter at least two.)</p>
+	</ListEntry>
 {:else if !criteria}
-	<ListEntry key="criteria" on:submit={handleCriteriaSubmit}></ListEntry>
+	<ListEntry 
+		on:submit={handleCriteriaSubmit} 
+		submitButtonText="Next">
+		<h1 slot="title">Criteria</h1>
+		<p slot="description">Please enter the criteria you wish to use to evaluate your options.</p>
+	</ListEntry>
 {:else if !criteriaAreScored}
-	<h1>Criteria:</h1>
+	<h1>WIP</h1>
+	<h2>Criteria:</h2>
 	<ul>
 	{#each criteria as { text, id }, i (id)}
 		<li>{text}</li>	
 	{/each}
 	</ul>
-	<h1>Options:</h1>
+	<h2>Options:</h2>
 	<ul>
 	{#each options as { text, id }, i (id)}
 		<li>{text}</li>
 	{/each}
 	</ul>
+	<div>
+		<button on:click={handleCriteriaScores}>Score criteria</button>
+	</div>
+{:else if !optionsAreScored}
+	<h1>WIP</h1>
+	<div>
+		<button on:click={handleOptionsScores}>Score options</button>
+	</div>
+{:else}
+	<h1>Results</h1>
 {/if}
 </main>
 

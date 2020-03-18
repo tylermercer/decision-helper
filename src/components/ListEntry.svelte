@@ -2,6 +2,10 @@
   import createId from '../uid.js';
   import { createEventDispatcher } from 'svelte';
 
+  export let submitButtonText = "Submit";
+
+  export let minLength = 1;
+
 	const dispatch = createEventDispatcher();
 
   let entries = [];
@@ -25,18 +29,21 @@
 </script>
 
 <div>
-  <h1>Hello World!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  <slot name="title"></slot>
+  <slot name="description"></slot>
   {#each entries as { text, id }, i (id)}
     <div key={id} class="row">
-      <span class="entry-text">{text}</span><button on:click={() => deleteItem(id)}>Delete</button>
+      <span class="entry-text">{text}</span>
+      <button on:click={() => deleteItem(id)}>Delete</button>
     </div>
+  {:else}
+    <div></div>
   {/each}
   <div class="row">
     <input placeholder="Option 1" bind:value={entry}/>
     <button on:click={addEntry} >Add</button>
   </div>
-  <button on:click={submit}>Submit</button>
+  <button class="submit-btn" disabled={entries.length < minLength} on:click={submit}>{submitButtonText}</button>
 </div>
 
 <style>
@@ -55,5 +62,8 @@
     display: flex;
     margin: 4px 0;
     align-items: center;
+  }
+  .submit-btn {
+    float: right;
   }
 </style>
