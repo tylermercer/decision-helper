@@ -2,14 +2,12 @@
   import { createEventDispatcher } from 'svelte';
   import { Button } from 'svelte-chota';
   export let pair;
-  export let prompt;
 
   const dispatch = createEventDispatcher();
 
   const onSelect = (i) => dispatch('submit', pair[i].index);
 </script>
 
-<p>{prompt}</p>
 <div class="row">
 {#each pair as { item, index }, i (i)}
   <div class="item">

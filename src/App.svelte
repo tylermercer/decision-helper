@@ -50,14 +50,14 @@
 	</ListEntry>
 {:else if !scoredCriteria}
 	<h3>Rank Criteria</h3>
+	<p>Which of these two criteria is more important?</p>
 	<PairListPresenter
-		prompt="Which of these two criteria is more important?"
 		items={criteria} 
 		on:done={handleCriteriaScores}/>
 {:else if !scoredOptions}
 	<h3>Rank Options by Criteria</h3>
 	<PairListCrossPresenter 
-		prompts={criteria.map(c =>`Which of these options best satisfies the following criteria? "${c}"`)}
+		prompts={criteria}
 		items={options} 
 		on:done={handleOptionsScores}/>
 {:else}

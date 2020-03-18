@@ -19,10 +19,13 @@
     if (index + 1 === prompts.length) done()
     else index += 1;
   }
+  console.log(prompts[index])
 </script>
 
+<p>Which one of these <i>best</i> meets the following criteria?</p>
+<p>"{prompts[index]}"</p>
 <PairListPresenter
-  prompt={prompts[index]}
   {items}
   on:done={handleRowComplete}
-  />
+  >
+</PairListPresenter>

@@ -6,7 +6,6 @@
   const dispatch = createEventDispatcher();
 
   export let items = [];
-  export let prompt;
 
   let scoredItems;
 
@@ -33,11 +32,11 @@
     if (index + 1 === pairedItems.length) done();
     else index += 1;
   }
-  
+
   initScoredItems();
 </script>
 
-<PairPresenter 
-  {prompt}
+<PairPresenter
   pair={pairedItems[index]} 
-  on:submit={handleScore}/>
+  on:submit={handleScore}>
+</PairPresenter>
