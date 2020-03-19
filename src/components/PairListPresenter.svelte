@@ -9,12 +9,13 @@
 
   let scoredItems;
 
-  let index = 0;
+  let index;
 
   let pairedItems = pairsFromArray(items);
 
-  const initScoredItems = () => {
+  const init = () => {
     scoredItems = items.map(e => ({ text: e, score: 0 }));
+    index = 0;
   }
 
   const done = () => {
@@ -23,7 +24,7 @@
       score: e.score/(items.length - 1) //Score is the percentage of relevant pairs that this item won
     }));
     dispatch('done', normalizedScores);
-    initScoredItems();
+    init();
   }
 
   const handleScore = ({ detail }) => {
@@ -33,7 +34,7 @@
     else index += 1;
   }
 
-  initScoredItems();
+  init();
 </script>
 
 <PairPresenter
