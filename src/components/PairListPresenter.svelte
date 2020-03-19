@@ -7,16 +7,11 @@
 
   export let items = [];
 
-  let scoredItems;
+  let scoredItems = items.map(e => ({ text: e, score: 0 }));
 
-  let index;
+  let index = 0;
 
   let pairedItems = pairsFromArray(items);
-
-  const init = () => {
-    scoredItems = items.map(e => ({ text: e, score: 0 }));
-    index = 0;
-  }
 
   const done = () => {
     let normalizedScores = scoredItems.map(e => ({ 
@@ -24,7 +19,6 @@
       score: e.score/(items.length - 1) //Score is the percentage of relevant pairs that this item won
     }));
     dispatch('done', normalizedScores);
-    init();
   }
 
   const handleScore = ({ detail }) => {
@@ -33,8 +27,6 @@
     if (index + 1 === pairedItems.length) done();
     else index += 1;
   }
-
-  init();
 </script>
 
 <PairPresenter

@@ -23,8 +23,10 @@
 
 <p>Which one of these <i>best</i> meets the following criteria?</p>
 <p>"{prompts[index]}"</p>
-<PairListPresenter
-  {items}
-  on:done={handleRowComplete}
-  >
-</PairListPresenter>
+{#each [index] as index (index)} <!--Key hack; this forces this component to be redrawn when index changes-->
+  <PairListPresenter
+    {items}
+    on:done={handleRowComplete}
+    >
+  </PairListPresenter>
+{/each}
