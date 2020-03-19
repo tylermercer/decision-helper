@@ -37,7 +37,7 @@
 		on:submit={handleOptionsSubmit} 
 		submitButtonText="Next"
 		minLength={2}>
-		<h3 slot="title">Enter Options</h3>
+		<h3 slot="title">Step 1 of 4: Enter Options</h3>
 		<p slot="description">Please enter the options you're deciding between. (Enter at least two.)</p>
 		<p slot="empty" class="text-grey">Enter a decision option to get started!</p>
 	</ListEntry>
@@ -46,18 +46,18 @@
 		placeholder="Criteria text"
 		on:submit={handleCriteriaSubmit} 
 		submitButtonText="Next">
-		<h3 slot="title">Enter Criteria</h3>
+		<h3 slot="title">Step 2 of 4: Enter Criteria</h3>
 		<p slot="description">Please enter the criteria you wish to use to evaluate your options, such as "cost" or "time required"</p>
 		<p slot="empty" class="text-grey">No criteria yet!</p>
 	</ListEntry>
 {:else if !scoredCriteria.length}
-	<h3>Rank Criteria</h3>
+	<h3>Step 3 of 4: Rank Criteria</h3>
 	<p>Which of these two criteria is more important?</p>
 	<PairListPresenter
 		items={criteria} 
 		on:done={handleCriteriaScores}/>
 {:else if !scoredOptions.length}
-	<h3>Rank Options by Criteria</h3>
+	<h3>Step 4 of 4: Rank Options by Criteria</h3>
 	<PairListCrossPresenter 
 		prompts={criteria}
 		items={options} 
