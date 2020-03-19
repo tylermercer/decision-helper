@@ -2,6 +2,7 @@
 	import ListEntry from './components/ListEntry.svelte';
 	import PairListPresenter from './components/PairListPresenter.svelte';
 	import PairListCrossPresenter from './components/PairListCrossPresenter.svelte';
+  import Fade from './components/Fade.svelte';
 
 	import ResultsStep from './steps/ResultsStep.svelte';
 	import EnterOptionsStep from './steps/EnterOptionsStep.svelte';
@@ -56,23 +57,35 @@
 <h1>Volit</h1>
 <p>A tool to make difficult decisions easier</p>
 {#if currentPage === 0}
+<Fade>
 	<EnterOptionsStep on:submit={handleOptionsSubmit}/>
+</Fade>
 {:else if currentPage === 1}
+<Fade>
 	<EnterCriteriaStep on:submit={handleCriteriaSubmit}/>
+</Fade>
 {:else if currentPage === 2}
+<Fade>
 	<CompareCriteriaStep 
 		{criteria} 
 		on:done={handleCriteriaScores}/>
+</Fade>
 {:else if currentPage === 3}
+<Fade>
 	<CompareOptionsStep 
 		{criteria}
 		{options}
 		on:done={handleOptionsScores}/>
+</Fade>
 {:else if currentPage === 4}
+<Fade>
 	<ResultsStep {scoredCriteria} {scoredOptions}/>
+</Fade>
 {:else}
+<Fade>
 	<h3>Oh No</h3>
 	<p>Something went wrong. Please refresh the page.</p>
+</Fade>
 {/if}
 </main>
 
