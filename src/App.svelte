@@ -39,7 +39,6 @@
 		minLength={2}>
 		<h3 slot="title">Step 1 of 4: Enter Options</h3>
 		<p slot="description">Please enter the options you're deciding between. (Enter at least two.)</p>
-		<p slot="empty" class="text-grey">Enter a decision option to get started!</p>
 	</ListEntry>
 {:else if !criteria}
 	<ListEntry 
@@ -48,7 +47,6 @@
 		submitButtonText="Next">
 		<h3 slot="title">Step 2 of 4: Enter Criteria</h3>
 		<p slot="description">Please enter the criteria you wish to use to evaluate your options, such as "cost" or "time required"</p>
-		<p slot="empty" class="text-grey">No criteria yet!</p>
 	</ListEntry>
 {:else if !scoredCriteria.length}
 	<h3>Step 3 of 4: Rank Criteria</h3>
