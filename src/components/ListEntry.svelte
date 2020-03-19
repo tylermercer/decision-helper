@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { Field, Button, Input } from 'svelte-chota';
+  import { Field, Button } from 'svelte-chota';
 
   export let submitButtonText = "Submit";
 
@@ -14,10 +14,13 @@
 
   let entry = "";
 
+  let input;
+
   const addEntry = () => {
     if (!entry) return;
     entries =  entries.concat(entry);
     entry = "";
+    input.focus();
   }
 
   const submit = () => dispatch('submit', entries);
@@ -46,8 +49,9 @@
   {/each}
   <Field gapless grouped>
     <!-- svelte-ignore a11y-autofocus -->
-    <Input 
+    <input 
       {placeholder} 
+      bind:this={input}
       on:keydown="{handleEnter}" 
       bind:value={entry} 
       autofocus/>
