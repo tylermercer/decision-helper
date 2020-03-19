@@ -7,6 +7,8 @@
 
   let showScores = false;
 
+  const round = num => +(Math.round(num + "e+2")  + "e-2");
+
   const computeResults = (options, criteria) => {
 		let res = options[0].map(({text}) => ({text, score: 0}));
 		for (var c in criteria) {
@@ -29,7 +31,7 @@
       <span>{i + 1}. </span>
       {text}
       {#if showScores}
-        <span class="text-grey">{` (${score})`}</span>
+        <span class="text-grey">{` (${round(score)})`}</span>
       {/if}
     </p>
   {/each}
