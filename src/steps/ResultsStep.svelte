@@ -22,7 +22,7 @@
   $: results = computeResults(scoredOptions, scoredCriteria);
 </script>
 
-
+<h3>Results</h3>
 <div class="results">
   {#each results as { text, score }, i (i)}
     <p class="item" class:first={i === 0} class:primary-text={i === 0}>

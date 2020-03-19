@@ -2,7 +2,12 @@
 	import ListEntry from './components/ListEntry.svelte';
 	import PairListPresenter from './components/PairListPresenter.svelte';
 	import PairListCrossPresenter from './components/PairListCrossPresenter.svelte';
-	import Results from './components/Results.svelte';
+
+	import ResultsStep from './steps/ResultsStep.svelte';
+	import EnterOptionsStep from './steps/EnterOptionsStep.svelte';
+	import EnterCriteriaStep from './steps/EnterCriteriaStep.svelte';
+	import CompareCriteriaStep from './steps/CompareCriteriaStep.svelte';
+	import CompareOptionsStep from './steps/CompareOptionsStep.svelte';
 
 	let options;
 	let criteria;
@@ -10,7 +15,7 @@
 	let scoredOptions = [];
 	let currentPage = 0;
 
-	const next = () => currentPage += 1;
+	const next = (n = 1) => currentPage += n;
 
 	// const previous = () => currentPage -= 1;
 
@@ -21,7 +26,14 @@
 
 	const handleCriteriaSubmit = ({ detail }) => {
 		criteria = detail;
-		next();
+		if (criteria.length === 1) {
+			//No need to score criteria
+			scoredCriteria = [{ item: criteria[0], score: 1 }];
+			next(2);
+		}
+		else {
+			next();
+		}
 	}
 
 	const handleCriteriaScores = ({ detail }) => {
@@ -36,50 +48,33 @@
 
 </script>
 
+<svelte:head>
+	<title>Volit | Make Hard Decisions Easier</title>
+</svelte:head>
+
 <main>
 <h1>Volit</h1>
 <p>A tool to make difficult decisions easier</p>
 {#if currentPage === 0}
-	<ListEntry 
-		placeholder="Option text"
-		on:submit={handleOptionsSubmit} 
-		submitButtonText="Next"
-		minLength={2}>
-		<h3 slot="title">Step 1 of 4: Enter Options</h3>
-		<p slot="description">Please enter the options you're deciding between. (Enter at least two.)</p>
-	</ListEntry>
+	<EnterOptionsStep on:submit={handleOptionsSubmit}/>
 {:else if currentPage === 1}
-	<ListEntry 
-		placeholder="Criteria text"
-		on:submit={handleCriteriaSubmit} 
-		submitButtonText="Next">
-		<h3 slot="title">Step 2 of 4: Enter Criteria</h3>
-		<p slot="description">Please enter the criteria you wish to use to evaluate your options, such as "cost" or "time required"</p>
-	</ListEntry>
+	<EnterCriteriaStep on:submit={handleCriteriaSubmit}/>
 {:else if currentPage === 2}
-	<h3>Step 3 of 4: Rank Criteria</h3>
-	<p>Which of these two criteria is more important?</p>
-	<PairListPresenter
-		items={criteria} 
+	<CompareCriteriaStep 
+		{criteria} 
 		on:done={handleCriteriaScores}/>
 {:else if currentPage === 3}
-	<h3>Step 4 of 4: Rank Options by Criteria</h3>
-	<PairListCrossPresenter 
-		prompts={criteria}
-		items={options} 
+	<CompareOptionsStep 
+		{criteria}
+		{options}
 		on:done={handleOptionsScores}/>
 {:else if currentPage === 4}
-	<h3>Results</h3>
-	<Results {scoredCriteria} {scoredOptions}/>
+	<ResultsStep {scoredCriteria} {scoredOptions}/>
 {:else}
 	<h3>Oh No</h3>
 	<p>Something went wrong. Please refresh the page.</p>
 {/if}
 </main>
-
-<svelte:head>
-	<title>Volit | Make Hard Decisions Easier</title>
-</svelte:head>
 
 <style>
 	main {
