@@ -18,7 +18,6 @@
 			}
 		}
 		res.sort((a, b) => b.score - a.score);
-    console.log(res);
     return res;
   }
   
