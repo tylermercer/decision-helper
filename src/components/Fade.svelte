@@ -1,24 +1,32 @@
 <script>
   export let duration = 400;
+  export let durationIn = duration/2;
+  export let durationOut = duration/2;
   export let easeIn = t => t;
   export let easeOut = t => t;
 
   const fadeIn = function(node) {
     const o = +getComputedStyle(node).opacity;
+    //Give time for previous element to fade out
     node.hidden = true;
-    setTimeout(() => node.hidden = false, duration/2);
+    setTimeout(() => node.hidden = false, durationOut);
     return {
-      delay: duration/2,
-      duration:duration,
-      css: t => `opacity: ${easeIn(t) * o};`
+      duration: durationIn + durationOut,
+      easing: easeIn,
+      /* 
+      t is multiplied by duration/durationIn below because the time in which the animation can complete 
+      is reduced (because of the setTimeout above), so we need to speed up to finish in time
+      */
+      css: t => `opacity: ${t * 2 * o}`
     };
   };
 
   const fadeOut = function(node) {
   const o = +getComputedStyle(node).opacity;
     return {
-      duration:duration/2,
-      css: t => `opacity: ${easeOut(t) *o}`
+      duration: durationOut,
+      easing: easeOut,
+      css: t => `opacity: ${t * o}`
     };
   };
 </script>
