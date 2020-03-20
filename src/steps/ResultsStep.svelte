@@ -39,6 +39,7 @@
   {/each}
 </div>
 <Button outline primary on:click={() => showScores = !showScores}>{showScores? "Hide" : "Show"} Scores</Button>
+<p><a href="/">Reset</a></p>
 
 <style>
   .first {
