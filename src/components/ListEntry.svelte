@@ -76,8 +76,12 @@
     text-align: left;
   }
   .row {
+    border-top: 1px solid lightgray;
     display: flex;
     margin: 4px 0;
     align-items: center;
+  }
+  .row button {
+    margin: 10px 0;
   }
 </style>
