@@ -46,10 +46,6 @@
 
 </script>
 
-<svelte:head>
-	<title>Volit | Make Hard Decisions Easier</title>
-</svelte:head>
-
 <main>
 <h1><a class="logo" href="/">Volit</a></h1>
 <p>A tool to make difficult decisions easier</p>
