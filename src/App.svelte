@@ -1,14 +1,11 @@
 <script>
-	import ListEntry from './components/ListEntry.svelte';
-	import PairListPresenter from './components/PairListPresenter.svelte';
-	import PairListCrossPresenter from './components/PairListCrossPresenter.svelte';
-  import Fade from './components/Fade.svelte';
-
 	import ResultsStep from './steps/ResultsStep.svelte';
 	import EnterOptionsStep from './steps/EnterOptionsStep.svelte';
 	import EnterCriteriaStep from './steps/EnterCriteriaStep.svelte';
 	import CompareCriteriaStep from './steps/CompareCriteriaStep.svelte';
 	import CompareOptionsStep from './steps/CompareOptionsStep.svelte';
+	
+	import Fade from './components/Fade.svelte';
 
 	let options;
 	let criteria;
