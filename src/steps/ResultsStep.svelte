@@ -1,5 +1,6 @@
 <script>
   import { Button } from 'svelte-chota';
+  import { fade } from 'svelte/transition';
 
   export let scoredCriteria;
 
@@ -17,7 +18,6 @@
 			}
 		}
 		res.sort((a, b) => b.score - a.score);
-    console.log(res);
     return res;
   }
   
@@ -31,7 +31,9 @@
       <span>{i + 1}. </span>
       {text}
       {#if showScores}
-        <span class="text-grey">{` (${round(score)})`}</span>
+        <span class="text-grey" transition:fade={{duration: 200}}>
+          {` (${round(score)})`}
+        </span>
       {/if}
     </p>
   {/each}

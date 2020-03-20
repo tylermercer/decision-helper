@@ -1,7 +1,8 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import pairsFromArray from '../utils/pairsFromArray';
   import PairPresenter from './PairPresenter.svelte';
-  import { createEventDispatcher } from 'svelte';
+  import Fade from './Fade.svelte';
   
   const dispatch = createEventDispatcher();
 
@@ -27,9 +28,14 @@
     if (index + 1 === pairedItems.length) done();
     else index += 1;
   }
+
 </script>
 
-<PairPresenter
-  pair={pairedItems[index]} 
-  on:submit={handleScore}>
-</PairPresenter>
+{#each [index] as index (index)}
+  <Fade>
+    <PairPresenter
+      pair={pairedItems[index]} 
+      on:submit={handleScore}>
+    </PairPresenter>
+  </Fade>
+{/each}
