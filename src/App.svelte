@@ -51,7 +51,7 @@
 </svelte:head>
 
 <main>
-<h1>Volit</h1>
+<h1><a class="logo" href="/">Volit</a></h1>
 <p>A tool to make difficult decisions easier</p>
 {#if currentPage === 0}
 <Fade>
@@ -91,6 +91,10 @@
 		padding: 1em;
 		max-width: 480px;
 		margin: 0 auto;
+	}
+
+	.logo {
+		text-decoration: none;
 	}
 
 	:global(h1), :global(h2), :global(h3) {
