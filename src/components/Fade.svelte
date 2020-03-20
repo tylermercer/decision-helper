@@ -1,9 +1,8 @@
 <script>
-  import {quadIn, quadOut} from 'svelte/easing';
-  export let duration = 250;
-  export let easeIn = quadIn;
-  export let easeOut = quadOut;
-  
+  export let duration = 400;
+  export let easeIn = t => t;
+  export let easeOut = t => t;
+
   const fadeIn = function(node) {
     const o = +getComputedStyle(node).opacity;
     node.hidden = true;
