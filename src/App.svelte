@@ -47,39 +47,41 @@
 </script>
 
 <main>
-<h1><a class="logo" href="/">Volit</a></h1>
-<p>A tool to make difficult decisions easier</p>
-{#if currentPage === 0}
-<Fade>
-	<EnterOptionsStep on:submit={handleOptionsSubmit}/>
-</Fade>
-{:else if currentPage === 1}
-<Fade>
-	<EnterCriteriaStep on:submit={handleCriteriaSubmit}/>
-</Fade>
-{:else if currentPage === 2}
-<Fade>
-	<CompareCriteriaStep 
-		{criteria} 
-		on:done={handleCriteriaScores}/>
-</Fade>
-{:else if currentPage === 3}
-<Fade>
-	<CompareOptionsStep 
-		{criteria}
-		{options}
-		on:done={handleOptionsScores}/>
-</Fade>
-{:else if currentPage === 4}
-<Fade>
-	<ResultsStep {scoredCriteria} {scoredOptions}/>
-</Fade>
-{:else}
-<Fade>
-	<h3>Oh No</h3>
-	<p>Something went wrong. Please refresh the page.</p>
-</Fade>
-{/if}
+	<h1>
+		<a class="logo" href="/">Volit</a>
+	</h1>
+	<p>A tool to make difficult decisions easier</p>
+	{#if currentPage === 0}
+		<Fade>
+			<EnterOptionsStep on:submit={handleOptionsSubmit}/>
+		</Fade>
+	{:else if currentPage === 1}
+		<Fade>
+			<EnterCriteriaStep on:submit={handleCriteriaSubmit}/>
+		</Fade>
+	{:else if currentPage === 2}
+		<Fade>
+			<CompareCriteriaStep 
+				{criteria} 
+				on:done={handleCriteriaScores}/>
+		</Fade>
+	{:else if currentPage === 3}
+		<Fade>
+			<CompareOptionsStep 
+				{criteria}
+				{options}
+				on:done={handleOptionsScores}/>
+		</Fade>
+	{:else if currentPage === 4}
+		<Fade>
+			<ResultsStep {scoredCriteria} {scoredOptions}/>
+		</Fade>
+	{:else}
+		<Fade>
+			<h3>Oh No</h3>
+			<p>Something went wrong. Please refresh the page.</p>
+		</Fade>
+	{/if}
 </main>
 
 <style>
