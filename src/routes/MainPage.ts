@@ -15,7 +15,7 @@ const Main = () => {
   const currentPage = new SimpleObservable(p("loading"));
 
   const next = (n:number = 1) => {
-    //Handle next
+    //TODO: Handle next
     console.log(options.value);
     currentPageNumber.set(n);
   }
@@ -27,6 +27,7 @@ const Main = () => {
   
   const viewBuilders: ViewBuilderSet = {
     0: () => EnterOptionsStep({ options, onSubmit: next}),
+    //TODO: Add remaining builders
   }
 
   currentPageNumber.subscribe(
