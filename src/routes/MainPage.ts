@@ -1,7 +1,7 @@
 import { p, SimpleObservable, h3, div } from "markup-as-js";
 import EnterOptionsStep from "../steps/EnterOptionsStep";
 
-interface PageBuilderSet {
+interface ViewBuilderSet {
   [index: number]: () => HTMLElement
 }
 
@@ -20,17 +20,17 @@ const Main = () => {
     currentPageNumber.set(n);
   }
 
-  const buildErrorPage = () => div(
+  const buildErrorView = () => div(
     h3("Oh no"),
     p("Something broke. Please refresh the page")
   );
   
-  const pageBuilders: PageBuilderSet = {
+  const viewBuilders: ViewBuilderSet = {
     0: () => EnterOptionsStep({ options, onSubmit: next}),
   }
 
   currentPageNumber.subscribe(
-    v => currentPage.set((pageBuilders[v] || buildErrorPage)())
+    v => currentPage.set((viewBuilders[v] || buildErrorView)())
   );
   
   return div(currentPage);
