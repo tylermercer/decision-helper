@@ -1,41 +1,39 @@
 import { p, SimpleObservable, h3, div } from "markup-as-js";
-import ListEntry from '../components/ListEntry';
+import EnterOptionsStep from "../steps/EnterOptionsStep";
+
+interface PageBuilderSet {
+  [index: number]: () => HTMLElement
+}
 
 const Main = () => {
   
-  let options = new SimpleObservable<string[]>([]);
+  const options = new SimpleObservable<string[]>([]);
 	let criteria = [];
 	let scoredCriteria = [];
 	let scoredOptions = [];
-  let currentPage = 0;
+  const currentPageNumber = new SimpleObservable(0);
+  const currentPage = new SimpleObservable(p("loading"));
 
-  const next = (n = 1) => {
+  const next = (n:number = 1) => {
     //Handle next
+    console.log(options.value);
+    currentPageNumber.set(n);
   }
+
+  const buildErrorPage = () => div(
+    h3("Oh no"),
+    p("Something broke. Please refresh the page")
+  );
   
-  const getCurrentView = (page: number) => {
-    switch (page) {
-      case 0:
-        return ListEntry(
-          {
-            placeholder: "Option text",
-            onSubmit: next,
-            entries: options,
-            minLength: 2,
-            submitButtonText: "Next"
-          },
-          h3("Step 1 of 4: Enter Options"),
-          p("Please enter the options you're deciding between. (Enter at least two.)")
-        );
-      default:
-        return div(
-          h3("Oh No"),
-          p("Something went wrong. Please refresh the page")
-        )
-    }
+  const pageBuilders: PageBuilderSet = {
+    0: () => EnterOptionsStep({ options, onSubmit: next}),
   }
+
+  currentPageNumber.subscribe(
+    v => currentPage.set((pageBuilders[v] || buildErrorPage)())
+  );
   
-  return getCurrentView(currentPage);
+  return div(currentPage);
 }
 
 export default Main;
