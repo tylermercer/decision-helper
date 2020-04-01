@@ -42,3 +42,12 @@ h1, h2, h3 {
 .input-field {
   margin-bottom: 16px;
 }
+.result-item {
+  margin-bottom: 4px;
+}
+.result-first {
+  font-size: 150%;
+}
+.results {
+  margin-bottom: 24px;
+}
