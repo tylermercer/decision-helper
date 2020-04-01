@@ -1,4 +1,4 @@
-import { SimpleObservable } from 'markup-as-js';
+import { SimpleObservable, TeardownableHTMLElement } from 'markup-as-js';
 import page from 'page';
 
 import App from './App';
@@ -19,6 +19,9 @@ if (routeNode) {
     page(route.path, (ctx, next) => {
       currentPath.set(route.path);
       let newNode = route.builder(ctx, next);
+      if (typeof (routeNode as TeardownableHTMLElement).teardown ==='function') {
+        (routeNode as TeardownableHTMLElement).teardown();
+      }
       routeNode.parentElement?.replaceChild(newNode, routeNode);
       routeNode = newNode;
     });
