@@ -1,4 +1,4 @@
-import { header, a, main, div, Observable } from 'markup-as-js';
+import { a, main, div, Observable } from 'markup-as-js';
 import routes from './routes';
 
 const App = (currentPath: Observable<string>) => {
@@ -9,18 +9,18 @@ const App = (currentPath: Observable<string>) => {
   });
 
   return main(
-    header(
-      div(
-        {class:"nav"},
-        div({class:"nav-left"}, a({class:"brand", href: "/"}, "Volit")),
-        div({class:"nav-right tabs"},
-          ...routes
-            .filter(r => r.nav)
-            .map(r => a({href:r.path}, r.label))
-        )
+    div(
+      {class:"nav"},
+      div({class:"nav-left"}, a({class:"brand", href: "/"}, "Volit")),
+      div({class:"nav-right tabs"},
+        ...routes
+          .filter(r => r.nav)
+          .map(r => a({href:r.path}, r.label))
       )
     ),
-    div({id: "route"})
+    div({class:"content"}, 
+      div({id: "route"}) //Will be replaced with route content
+    )
   );
 }
 

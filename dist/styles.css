@@ -11,10 +11,13 @@
   --font-family: "Helvetica Neue", sans-serif;
 }
 
-main {
-  padding: 1em;
-  max-width: 800px;
+.decider {
+  max-width: 600px;
   margin: 0 auto;
+}
+
+.content {
+  padding: 2rem;
 }
 
 h1, h2, h3 {

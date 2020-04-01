@@ -48,7 +48,7 @@ const Main = () => {
     }
   );
   
-  return div(currentPage);
+  return div({class:"decider"}, currentPage);
 }
 
 export default Main;
