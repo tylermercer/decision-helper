@@ -4,8 +4,8 @@ import routes from './routes';
 const App = (currentPath: Observable<string>) => {
 
   currentPath.subscribe((path: string) => {
-    document.querySelector('nav ul a.active')?.classList.remove('active');
-    document.querySelector(`nav ul a[href="${path}"]`)?.classList.add('active');
+    document.querySelector('.nav .tabs .active')?.classList.remove('active');
+    document.querySelector(`.nav .tabs a[href="${path}"]`)?.classList.add('active');
   });
 
   return main(
