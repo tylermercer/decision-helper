@@ -22,8 +22,8 @@ const Main = () => {
   }
 
   const buildErrorView = () => div(
-    h3("Oh no"),
-    p("Something broke. Please refresh the page")
+    h3("We're Sorry"),
+    p("Something broke. Please refresh the page.")
   );
   
   const viewBuilders: ViewBuilderSet = {
