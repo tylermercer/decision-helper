@@ -1,5 +1,6 @@
 import { p, SimpleObservable, h3, div, TeardownableHTMLElement } from "markup-as-js";
 import EnterOptionsStep from "../steps/EnterOptionsStep";
+import EnterCriteriaStep from "../steps/EnterCriteriaStep";
 
 interface ViewBuilderSet {
   [index: number]: () => TeardownableHTMLElement
@@ -8,16 +9,16 @@ interface ViewBuilderSet {
 const Main = () => {
   
   const options = new SimpleObservable<string[]>([]);
-	let criteria = [];
-	let scoredCriteria = [];
-	let scoredOptions = [];
+	const criteria = new SimpleObservable<string[]>([]);
+	// let scoredCriteria = [];
+	// let scoredOptions = [];
   const currentPageNumber = new SimpleObservable(0);
   const currentPage = new SimpleObservable<TeardownableHTMLElement>(p("loading"));
 
   const next = (n:number = 1) => {
     //TODO: Handle next
     console.log(options.value);
-    currentPageNumber.set(n);
+    currentPageNumber.set(currentPageNumber.value + n);
   }
 
   const buildErrorView = () => div(
@@ -27,7 +28,7 @@ const Main = () => {
   
   const viewBuilders: ViewBuilderSet = {
     0: () => EnterOptionsStep({ options, onSubmit: next}),
-    // 1: () => EnterCriteriaStep({ })
+    1: () => EnterCriteriaStep({ criteria, onSubmit: next })
     //TODO: Add remaining builders
   }
 

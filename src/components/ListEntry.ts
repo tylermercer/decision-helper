@@ -85,7 +85,7 @@ const ListEntry = (
       {
         class: "button primary pull-right", 
         disabled: submitDisabled,
-        onclick: onSubmit
+        onclick: () => onSubmit()
       },
       submitButtonText
     )
