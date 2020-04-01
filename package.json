@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@types/page": "^1.8.0",
-    "markup-as-js": "^1.2.0",
+    "markup-as-js": "^1.2.1",
     "page": "^1.11.5"
   }
 }

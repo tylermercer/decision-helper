@@ -1,4 +1,4 @@
-import { h2, header, nav, a, ul, li, main, div, Observable } from 'markup-as-js';
+import { header, a, main, div, Observable } from 'markup-as-js';
 import routes from './routes';
 
 const App = (currentPath: Observable<string>) => {

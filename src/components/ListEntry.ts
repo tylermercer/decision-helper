@@ -1,4 +1,4 @@
-import { div, span, button, input, p, SimpleObservable } from "markup-as-js"
+import { div, span, button, input, SimpleObservable } from "markup-as-js"
 
 type Props = {
   submitButtonText: string, 
@@ -35,7 +35,7 @@ const ListEntry = (
     entriesContainer.appendChild(renderItem(text.value, entries.value.length));
     entries.set([...entries.value, text.value]);
     text.set("");
-    (entryInput as HTMLInputElement).value = "";
+    (entryInput as HTMLElement as HTMLInputElement).value = "";
     entryInput.focus();
   }
 
