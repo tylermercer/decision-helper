@@ -83,32 +83,3 @@
 		</Fade>
 	{/if}
 </main>
-
-<style>
-	main {
-		padding: 1em;
-		max-width: 480px;
-		margin: 0 auto;
-	}
-
-	.logo {
-		text-decoration: none;
-	}
-
-	:global(h1), :global(h2), :global(h3) {
-		color: var(--color-primary);
-	}
-
-	:global(:root) {
-			--color-primary: #00419c;
-			--color-lightGrey: #d2d6dd;
-			--color-grey: #747681;
-			--color-darkGrey: #3f4144;
-			--color-error: #d43939;
-			--color-success: #28bd14;
-			--grid-maxWidth: 120rem;
-			--grid-gutter: 2rem;
-			--font-size: 1.6rem;
-			--font-family: "Helvetica Neue", sans-serif;
-	}
-</style>
