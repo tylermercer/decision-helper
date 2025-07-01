@@ -1,0 +1,41 @@
+---
+// src/pages/index.astro
+import App from '../components/App.jsx'; // Import the new React App component
+
+// No other imports for steps are needed here anymore, App.jsx handles them.
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Volit | Make Hard Decisions Easier</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/chota.min.css">
+  <link rel="stylesheet" href="/global.css">
+
+  <style>
+    /* Page-specific styles for the main container */
+    main {
+      padding: 1em;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    /* Logo style is now part of App.jsx or global if needed elsewhere */
+  </style>
+</head>
+<body>
+  <main id="app-container">
+    <!-- Instantiate the React App component as an Astro Island -->
+    <App client:load />
+  </main>
+  <!-- The client-side script for React rendering is no longer needed here -->
+</body>
+</html>

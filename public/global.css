@@ -64,3 +64,33 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+/* Added from App.svelte / index.astro */
+:root {
+  --color-primary: #00419c;
+  --color-lightGrey: #d2d6dd;
+  --color-grey: #747681;
+  --color-darkGrey: #3f4144;
+  --color-error: #d43939;
+  --color-success: #28bd14;
+  --grid-maxWidth: 120rem;
+  --grid-gutter: 2rem;
+  --font-size: 1.6rem; /* Base font size for rem calculations if needed elsewhere */
+  --font-family: "Helvetica Neue", sans-serif; /* Overridden by body rule for now */
+}
+
+body {
+	color: #333; /* Existing */
+	margin: 0; /* Existing */
+	padding: 8px; /* Existing */
+	box-sizing: border-box; /* Existing */
+	font-family: var(--font-family); /* Use variable */
+  font-size: var(--font-size); /* Apply base font size */
+  line-height: 1.6; /* Added for better readability */
+}
+
+h1, h2, h3 {
+  color: var(--color-primary);
+  margin-top: 1.5em; /* Add some default spacing */
+  margin-bottom: 0.5em;
+}
